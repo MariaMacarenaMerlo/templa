@@ -1,8 +1,7 @@
 <script>
 //TODO: Agregar barra de navegacion superior
 //imagenes
-import bgLoginRegister from "../assets/bg/bg_login_register.jpg";
-import logo from "../assets/logos/logo_vertical_blanco.jpg";
+import bgLoginRegister from "../assets/bg/registe_login.jpg";
 
 import LoginForm from "../components/login/LoginForm.vue";
 
