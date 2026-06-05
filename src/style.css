@@ -21,6 +21,13 @@ body {
   --font-lato: 'Lato', sans-serif;
 }
 
+html,
+body,
+#app {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
  
 
 

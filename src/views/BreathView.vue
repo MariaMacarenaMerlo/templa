@@ -25,7 +25,7 @@ export default {
 </script>
 <template>
   <div
-    class="h-screen flex flex-col bg-cover bg-center bg-no-repeat"
+    class="h-dvh flex flex-col bg-cover bg-center bg-no-repeat"
     :style="{ backgroundImage: `url(${bgExerciseDay})` }"
   >
     <header>
