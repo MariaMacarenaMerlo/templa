@@ -4,7 +4,7 @@ export default {
 
   methods: {
     goToPause() {
-      this.$router.push("/sos");
+      this.$router.push("/breath");
     },
   },
 };

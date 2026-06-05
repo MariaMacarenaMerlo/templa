@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
-import SosButton from "../views/SosView.vue";
+import BreathView from "../views/BreathView.vue";
 import Splash from "../views/Splash.vue";
 import ComingSoon from "../views/ComingSoon.vue";
 
@@ -24,9 +24,9 @@ const routes = [
     component: Register,
   },
   {
-    path: "/sos",
-    name: "SosView",
-    component: SosButton,
+    path: "/breath",
+    name: "BreathView",
+    component: BreathView,
   },
   {
     path: "/splash",
