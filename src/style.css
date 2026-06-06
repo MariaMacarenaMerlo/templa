@@ -30,6 +30,10 @@ body,
 }
  
 
+.sos-breathing,
+main {
+  overflow: visible;
+}
 
 
 .breath-circle {
@@ -41,14 +45,31 @@ body,
   align-items: center;
   justify-content: center;
 
-  background: rgba(243, 240, 236, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.75);
-  box-shadow: 0 0 40px rgba(255, 255, 255, 0.35);
+  position: relative;
+  z-index: 1;
+
+  background: rgba(248, 236, 227, 0.46);
+  border: 1px solid #fdfbfb;
+
+  box-shadow:
+    inset 0 0 25px 10px #fffef0,
+    0 0 28px 8px #fff0e2,
+    0 0 34px 14px #fff6ed;
 
   transform: scale(.85);
   transition-property: transform;
   transition-timing-function: linear;
- 
+}
+
+.breath-circle::before {
+  content: "";
+  position: absolute;
+  inset: -45px;
+  border-radius: 50%;
+  background: rgba(255, 251, 228, 0.42);
+  filter: blur(30px);
+  z-index: -1;
+  pointer-events: none;
 }
 
 .breath-circle.expand {
