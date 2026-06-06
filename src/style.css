@@ -48,7 +48,7 @@ main {
   position: relative;
   z-index: 1;
 
-  background: rgba(248, 236, 227, 0.46);
+  background: rgb(248, 236, 227);
   border: 1px solid #fdfbfb;
 
   box-shadow:
