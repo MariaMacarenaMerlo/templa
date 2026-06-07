@@ -24,13 +24,18 @@ export default {
 </script>
 <template>
   <div
-    class="h-dvh flex flex-col bg-cover bg-bottom bg-no-repeat p-10 gap-15"
+    class="h-dvh flex flex-col bg-cover bg-bottom bg-no-repeat p-10"
     :style="{ backgroundImage: `url(${bgExerciseDay})` }"
   >
     <HeaderExercise class="h-" />
     <main class="flex-1 flex flex-col items-center">
-      <MainBreath @exercise-finished="showFeedbackModal = true" />
-      <SosMicrotext class="mt-4" />
+      <MainBreath
+        @exercise-finished="showFeedbackModal = true"
+        class="flex-9"
+      />
+      <div class="flex-1 flex flex-col items-center justify-center">
+        <SosMicrotext />
+      </div>
     </main>
     <!-- Modal -->
     <div v-if="showFeedbackModal" class="fixed inset-0 z-50">

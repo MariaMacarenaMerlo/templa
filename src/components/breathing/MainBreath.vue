@@ -21,7 +21,7 @@ export default {
 
       exerciseBreath: {
         name: "Respiración 4-4-6",
-        totalDuration: 15,
+        totalDuration: 60,
         phases: [
           {
             name: "Inhalar",
@@ -130,7 +130,7 @@ export default {
 </script>
 
 <template>
-  <div class="sos-breathing flex flex-col gap-13">
+  <div class="sos-breathing flex flex-col justify-between">
     <h1 class="text-center text-[1.25rem]">{{ exerciseBreath.name }}</h1>
     <p class="text-center text-[18px]">{{ currentPhase.description }}</p>
 
