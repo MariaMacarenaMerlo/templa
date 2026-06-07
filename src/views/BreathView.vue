@@ -2,6 +2,7 @@
 import MainBreath from "../components/breathing/MainBreath.vue";
 import SosMicrotext from "../components/breathing/SosMicrotext.vue";
 import Exit from "../components/uiComponents/Exit.vue";
+import HeaderExercise from "../components/uiComponents/HeaderExercise.vue";
 
 import bgExerciseDay from "../assets/bg/bg_respiraciones2.png";
 
@@ -10,30 +11,36 @@ export default {
   data() {
     return {
       bgExerciseDay,
-      emergencyContact: {
-        name: "Contacto de Emergencia", // TODO: esto deberia poder guardase en supabase y ser editable por el usuario
-        phone: "+5492235050119",
-      },
+      showFeedbackModal: false,
     };
   },
   components: {
     MainBreath,
     SosMicrotext,
     Exit,
+    HeaderExercise,
   },
 };
 </script>
 <template>
   <div
-    class="h-dvh flex flex-col bg-cover bg-center bg-no-repeat"
+    class="h-dvh flex flex-col bg-cover bg-bottom bg-no-repeat p-10 gap-15"
     :style="{ backgroundImage: `url(${bgExerciseDay})` }"
   >
-    <header>
-      <Exit />
-    </header>
-    <main class="flex-1 flex flex-col items-center justify-center">
-      <SosMicrotext />
-      <MainBreath />
+    <HeaderExercise class="h-" />
+    <main class="flex-1 flex flex-col items-center">
+      <MainBreath @exercise-finished="showFeedbackModal = true" />
+      <SosMicrotext class="mt-4" />
     </main>
+    <!-- Modal -->
+    <div v-if="showFeedbackModal" class="fixed inset-0 z-50">
+      <!-- fondo oscuro -->
+      <div class="absolute inset-0 bg-black/40"></div>
+
+      <!-- tarjeta -->
+      <div class="absolute bottom-0 w-full rounded-t-4xl bg-lino p-8">
+        <h2>¿Esto te ayudó?</h2>
+      </div>
+    </div>
   </div>
 </template>
