@@ -46,11 +46,11 @@ body,
   position: relative;
   z-index: 1;
 
-  background: rgb(248, 236, 227);
+  background: #F1DECE;
   border: 1px solid #fdfbfb;
 
   box-shadow:
-    inset 0 0 25px 10px #fffef0,
+    /*inset 0 0 10px 10px #fffef0,*/
     0 0 28px 8px #fff0e2,
     0 0 34px 14px #fff6ed;
 
