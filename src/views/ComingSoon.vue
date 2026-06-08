@@ -41,6 +41,12 @@ export default {
         <p class="text-sm text-texto/60">
           Menos ruido. Más presencia. Más templanza.
         </p>
+        <button
+          @click="router.push('/breath')"
+          class="text-sm text-durazno mt-2"
+        >
+          Probar ejercicio de respiración
+        </button>
       </div>
 
       <footer class="mt-12 text-xs tracking-widest uppercase text-texto/40">

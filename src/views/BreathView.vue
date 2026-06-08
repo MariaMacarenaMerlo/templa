@@ -61,7 +61,7 @@ export default {
           break;
 
         default:
-          console.warn("Respuesta desconocida");
+          console.log("Respuesta desconocida");
           break;
       }
     },
@@ -71,7 +71,7 @@ export default {
       // redirijo a la home o a otra sección.
       this.modalContent = {
         title: "Lo hiciste muy bien",
-        subtitle: "Tomarte este momento ya fue un paso importante.",
+        subtitle: "Tomarte este momento ya fuê un paso importante.",
         buttons: [{ label: "Volver al inicio", value: "home" }],
       };
     },
@@ -112,7 +112,7 @@ export default {
     class="h-dvh flex flex-col bg-cover bg-bottom bg-no-repeat p-10"
     :style="{ backgroundImage: `url(${bgExerciseDay})` }"
   >
-    <HeaderExercise class="h-" />
+    <HeaderExercise />
     <main class="flex-1 flex flex-col items-center">
       <MainBreath
         @exercise-finished="showFeedbackModal = true"
