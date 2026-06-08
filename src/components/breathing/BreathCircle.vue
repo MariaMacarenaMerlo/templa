@@ -18,10 +18,10 @@ export default {
 
 <template>
   <div
-    class="breath-circle"
+    class="breath-circle w-[210px] h-[210px] md:w-[240px] md:h-[240px]"
     :class="phase"
     :style="{ transitionDuration: duration + 's' }"
   >
-    <span class="breath-number">{{ secondsLeft }}</span>
+    <span class="text-[3.25rem] text-[#9E958F]">{{ secondsLeft }}</span>
   </div>
 </template>

@@ -3,6 +3,7 @@ import MainBreath from "../components/breathing/MainBreath.vue";
 import SosMicrotext from "../components/breathing/SosMicrotext.vue";
 import Exit from "../components/uiComponents/Exit.vue";
 import HeaderExercise from "../components/uiComponents/HeaderExercise.vue";
+import Modal from "../components/uiComponents/Modal.vue";
 
 import bgExerciseDay from "../assets/bg/bg_respiraciones2.png";
 
@@ -12,6 +13,16 @@ export default {
     return {
       bgExerciseDay,
       showFeedbackModal: false,
+
+      modalContent: {
+        title: "¿Esto te ayudó?",
+        subtitle: "Tu respuesta nos ayuda a acompañarte",
+        buttons: [
+          { label: "Sí, me ayudó", value: "si" },
+          { label: "Un poco", value: "poco" },
+          { label: "Todavía no", value: "no" },
+        ],
+      },
     };
   },
   components: {
@@ -19,6 +30,80 @@ export default {
     SosMicrotext,
     Exit,
     HeaderExercise,
+    Modal,
+  },
+
+  methods: {
+    handleFeedback(value) {
+      switch (value) {
+        case "si":
+          this.finishExercise();
+          break;
+
+        case "poco":
+          this.finishOrContinueExercise();
+          break;
+
+        case "no":
+          this.groundingOrExploreExercise();
+          break;
+
+        case "home":
+          this.$router.push("/");
+          break;
+
+        case "explore":
+          this.$router.push("/exercises");
+          break;
+
+        case "grounding":
+          this.$router.push("/grounding");
+          break;
+
+        default:
+          console.warn("Respuesta desconocida");
+          break;
+      }
+    },
+
+    finishExercise() {
+      //TODO:
+      // redirijo a la home o a otra sección.
+      this.modalContent = {
+        title: "Lo hiciste muy bien",
+        subtitle: "Tomarte este momento ya fue un paso importante.",
+        buttons: [{ label: "Volver al inicio", value: "home" }],
+      };
+    },
+
+    finishOrContinueExercise() {
+      //TODO:
+      //1. Terminar el ejercicio (redirijo a la home o a otra sección).
+      //2. Explorar catalogo de ejercicios (redirijo a la sección de ejercicios).
+      this.modalContent = {
+        title: "Es un buen comienzo",
+        subtitle: "¿Qué te gustaría hacer ahora?",
+        buttons: [
+          { label: "Explorar ejercicios", value: "explore" },
+          { label: "Finalizar", value: "home" },
+        ],
+      };
+    },
+    groundingOrExploreExercise() {
+      //TODO:
+      //cambio contenido de la modal:
+      // muestro mensaje de ánimo y ofrezco dos opciones:
+      //1. Hacer un ejercicio de grounding (redirijo a un ejercicio de grounding).
+      //2. Explorar catalogo de ejercicios (redirijo a la sección de ejercicios).
+      this.modalContent = {
+        title: "Probemos con otra técnica",
+        subtitle: "Grounding ayuda a volver la atención al presente",
+        buttons: [
+          { label: "Continuar con grounding", value: "grounding" },
+          { label: "Explorar ejercicios", value: "explore" },
+        ],
+      };
+    },
   },
 };
 </script>
@@ -37,15 +122,16 @@ export default {
         <SosMicrotext />
       </div>
     </main>
-    <!-- Modal -->
-    <div v-if="showFeedbackModal" class="fixed inset-0 z-50">
-      <!-- fondo oscuro -->
-      <div class="absolute inset-0 bg-black/40"></div>
 
-      <!-- tarjeta -->
-      <div class="absolute bottom-0 w-full rounded-t-4xl bg-lino p-8">
-        <h2>¿Esto te ayudó?</h2>
-      </div>
+    <!-- Modal -->
+
+    <div v-if="showFeedbackModal" class="fixed inset-0 z-50">
+      <Modal
+        :title="modalContent.title"
+        :subtitle="modalContent.subtitle"
+        :buttons="modalContent.buttons"
+        @select="handleFeedback"
+      />
     </div>
   </div>
 </template>
