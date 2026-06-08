@@ -1,6 +1,11 @@
 <script>
 export default {
   name: "ComingSoon",
+  methods: {
+    goToBreath() {
+      this.$router.push("/breath");
+    },
+  },
 };
 </script>
 
@@ -41,10 +46,7 @@ export default {
         <p class="text-sm text-texto/60">
           Menos ruido. Más presencia. Más templanza.
         </p>
-        <button
-          @click="router.push('/breath')"
-          class="text-sm text-durazno mt-2"
-        >
+        <button @click="goToBreath" class="text-sm text-durazno mt-2">
           Probar ejercicio de respiración
         </button>
       </div>
