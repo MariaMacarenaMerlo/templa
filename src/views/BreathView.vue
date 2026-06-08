@@ -16,7 +16,7 @@ export default {
 
       modalContent: {
         title: "¿Esto te ayudó?",
-        subtitle: "Tu respuesta nos ayuda a acompañarte",
+        subtitle: "Observá cómo te sentís en este momento",
         buttons: [
           { label: "Sí, me ayudó", value: "si" },
           { label: "Un poco", value: "poco" },
