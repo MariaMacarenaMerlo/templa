@@ -20,8 +20,8 @@ export default {
       chronometer: null,
 
       exerciseBreath: {
-        name: "Respiración 4-4-6",
-        totalDuration: 10,
+        name: "Respiración 4 4 6",
+        totalDuration: 60,
         phases: [
           {
             name: "Inhalar",
@@ -130,11 +130,11 @@ export default {
 </script>
 
 <template>
-  <div class="sos-breathing flex flex-col justify-between">
+  <div class="flex flex-col justify-between w-full items-center">
     <h1 class="text-center text-[1.25rem] pt-2">
       {{ exerciseBreath.name }}
     </h1>
-    <p class="text-center text-[18px]">{{ currentPhase.description }}</p>
+    <p class="text-center text-[18px] w-full">{{ currentPhase.description }}</p>
 
     <BreathCircle
       class="mt-4"

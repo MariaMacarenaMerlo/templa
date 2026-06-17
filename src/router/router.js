@@ -5,11 +5,10 @@ import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import BreathView from "../views/BreathView.vue";
 import Splash from "../views/Splash.vue";
-import ComingSoon from "../views/ComingSoon.vue";
 
 const routes = [
   {
-    path: "/home",
+    path: "/",
     name: "Home",
     component: Home,
   },
@@ -32,11 +31,6 @@ const routes = [
     path: "/splash",
     name: "Splash",
     component: Splash,
-  },
-  {
-    path: "/",
-    name: "ComingSoon",
-    component: ComingSoon,
   },
 ];
 

@@ -19,7 +19,7 @@ body {
   --color-noche-profunda: #253241;
   --color-durazno: #E6C7B8;
   --color-terracota: #C5896A;
-  --color-texto: #554D4A;
+  --color-texto: #40505D;
   --font-lato: 'Lato', sans-serif;
 }
 
@@ -43,6 +43,9 @@ body,
   align-items: center;
   justify-content: center;
 
+  flex-shrink: 0;
+  transform-origin: center center;
+
   position: relative;
   z-index: 1;
 
@@ -54,7 +57,7 @@ body,
     0 0 28px 8px #fff0e2,
     0 0 34px 14px #fff6ed;
 
-  transform: scale(.85);
+  transform: scale(0.6);
   transition-property: transform;
   transition-timing-function: linear;
 }
@@ -107,6 +110,9 @@ body,
   rgba(255, 199, 143, 0.2) 96%,
   rgba(249, 215, 173, 0.2) 42%
 );
+
+  
+
   
   box-shadow:  
   inset 0 0 25px 4px #F9C799,
