@@ -29,10 +29,15 @@ body,
   margin: 0;
   padding: 0;
   height: 100%;
+   scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;/* IE y Edge antiguos */
 }
  
 
-
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
 
 
 .breath-circle {
@@ -147,4 +152,35 @@ body,
     transform: scale(1.45);
     opacity: 0;
   }
+}
+
+
+.glass-dock {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  z-index: 50;
+
+  width: 90%;
+  max-width: 390px;
+  min-height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 999px;
+
+  /* Glass (backdrop me desenfoca lo que esta detras)*/
+  background: rgba(23, 70, 89, 0.528);
+
+  backdrop-filter: blur(4.5px);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }

@@ -79,8 +79,12 @@ HomeView
       <RandomQuote />
     </section>
 
-    <section class="bg-linear-to-b from-[#EFDAC9] to-[#F3F0EC] px-[17px]">
-      <h2 class="font-normal text-[17px]">¿Qué te gustaría hacer ahora?</h2>
+    <section
+      class="bg-linear-to-b from-[#EFDAC9] to-[#F3F0EC] px-[17px] pb-[6rem]"
+    >
+      <h2 class="font-normal text-[17px] pt-2">
+        ¿Qué te gustaría hacer ahora?
+      </h2>
       <div class="grid grid-cols-3 gap-[10px] py-[21px]">
         <ActionCard
           v-for="card in cards"
