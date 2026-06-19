@@ -55,7 +55,7 @@ export default {
       <h1 class="font-medium text-2xl pb-2">Hola, Pepa</h1>
       <button @click="switchSound" aria-label="Encender o apagar sonido">
         <img
-          :src="soundOn ? SoundOff : SoundOn"
+          :src="soundOn ? SoundOn : SoundOff"
           :alt="soundOn ? 'Apagar sonido' : 'Activar sonido'"
         />
       </button>
