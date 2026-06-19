@@ -1,4 +1,6 @@
 <script>
+//sonido
+import homeAudio from "../assets/audio/birds-freq-templa.mp3";
 //imagenes
 import bgHome from "../assets/bg/bg_home_light.webp";
 //iconos
@@ -42,6 +44,9 @@ export default {
           route: "/diario-emocional",
         },
       ],
+
+      audio: null,
+      isSoundOn: false,
     };
   },
   components: {
@@ -50,6 +55,20 @@ export default {
     RandomQuote,
     ActionCard,
     Dock,
+  },
+  methods: {
+    playPauseAudio(soundOn) {
+      if (soundOn) {
+        this.audio.play();
+      } else {
+        this.audio.pause();
+      }
+    },
+  },
+  mounted() {
+    this.audio = new Audio(homeAudio); //audio es una API nativa de JS, tiene propiedades y metodos
+    this.audio.loop = true;
+    this.audio.play();
   },
 };
 </script>
@@ -68,7 +87,7 @@ HomeView
       class="pt-13 px-3.75 pb- bg-cover bg-center bg-no-repeat flex flex-col gap-y-10 min-h-[675px]"
       :style="{ backgroundImage: `url(${bgHome})` }"
     >
-      <HomeHeader />
+      <HomeHeader @soundOn="playPauseAudio" />
       <div class="flex flex-col items-center gap-[28px]">
         <SosButton />
         <div>

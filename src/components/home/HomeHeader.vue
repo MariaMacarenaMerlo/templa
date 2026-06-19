@@ -35,11 +35,11 @@ export default {
     switchSound() {
       this.soundOn = !this.soundOn;
       if (this.soundOn) {
-        // Apagar el sonido
-        console.log("Apagando sonido...");
+        this.$emit("soundOn", true);
+        console.log("Enciendo sonido...");
       } else {
-        // Encender el sonido
-        console.log("Encendiendo sonido...");
+        this.$emit("soundOn", false);
+        console.log("Apago sonido...");
       }
     },
 
