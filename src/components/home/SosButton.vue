@@ -4,7 +4,10 @@ export default {
 
   methods: {
     goToPause() {
-      this.$router.push("/breath");
+      this.$router.push({
+        name: "BreathView",
+        params: { id: 2 },
+      });
     },
   },
 };

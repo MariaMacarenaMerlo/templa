@@ -70,6 +70,10 @@ export default {
     this.audio.loop = true;
     this.audio.play();
   },
+
+  unmounted() {
+    this.audio.pause();
+  },
 };
 </script>
 
@@ -85,7 +89,10 @@ HomeView
   <main>
     <section
       class="pt-13 px-3.75 pb- bg-cover bg-center bg-no-repeat flex flex-col gap-y-10 min-h-[675px]"
-      :style="{ backgroundImage: `url(${bgHome})` }"
+      :style="{
+        backgroundImage: `url(${bgHome})`,
+        backgroundPosition: 'center bottom',
+      }"
     >
       <HomeHeader @soundOn="playPauseAudio" />
       <div class="flex flex-col items-center gap-[28px]">

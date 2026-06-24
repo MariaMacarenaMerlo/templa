@@ -1,4 +1,5 @@
 import supabase from "./supabase";
+import { fetchProfileById, updateUserProfile } from "./profiles";
 
 let userData = null;
 let observers = [];
@@ -6,15 +7,31 @@ let observers = [];
 supabase.auth.onAuthStateChange((event, session) => {
   if (session) {
     userData = {
+      ...userData,
       id: session.user.id,
       email: session.user.email,
+      // todo: profileFullyLoaded: false,
     };
+
+    //cargamos de forma asincronica el resto de los datos:
+    fetchProfileById(userData.id).then((profile) => {
+      userData = {
+        ...userData,
+        ...profile,
+        // todo: profileFullyLoaded: true,
+      };
+      notifyAll();
+    });
   } else {
     userData = null;
   }
 
   notifyAll();
 });
+
+// async function loadDataForProfile() {
+
+// }
 
 export async function registerUser({ email, password }) {
   const { data, error } = await supabase.auth.signUp({
@@ -33,7 +50,10 @@ export async function loginUser({ email, password }) {
     password,
   });
 
-  if (error) throw new Error(error.message);
+  if (error) {
+    console.log(error.message);
+    throw new Error(error.message);
+  }
 
   return data.user;
 }
@@ -67,4 +87,16 @@ function notify(observer) {
 
 function notifyAll() {
   observers.forEach((observer) => notify(observer));
+}
+
+export async function updateAuthUserProfile(data) {
+  //actualizo la data del usuario
+  await updateUserProfile(userData.id, data);
+
+  userData = {
+    ...userData,
+    ...data,
+  };
+
+  notifyAll();
 }

@@ -18,37 +18,19 @@ export default {
       //cronometro
       remainingTime: 0,
       chronometer: null,
-
-      exerciseBreath: {
-        name: "Respiración 4 4 6",
-        totalDuration: 60,
-        phases: [
-          {
-            name: "Inhalar",
-            description: "Tomá aire lentamente",
-            duration: 4,
-            phase: "expand",
-          },
-          {
-            name: "Sostener",
-            description: "Mantené el aire un momento",
-            duration: 4,
-            phase: "holdExpanded",
-          },
-          {
-            name: "Exhalar",
-            description: "Soltá el aire despacio",
-            duration: 6,
-            phase: "contract",
-          },
-        ],
-      },
     };
+  },
+
+  props: {
+    exerciseBreath: {
+      type: Object,
+      required: true,
+    },
   },
 
   computed: {
     currentPhase() {
-      return this.exerciseBreath.phases[this.phaseIndex];
+      return this.exerciseBreath?.phases?.[this.phaseIndex];
     },
     changeTimeFormat() {
       // Formatea los segundos restantes a minutos y segundos.

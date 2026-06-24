@@ -2,6 +2,7 @@
 import Input from "../uiComponents/Input.vue";
 import { loginUser } from "../../services/auth";
 import AlertComponent from "../uiComponents/AlertComponent.vue";
+import ButtonSubmit from "../uiComponents/ButtonSubmit.vue";
 
 export default {
   name: "LoginForm",
@@ -20,6 +21,7 @@ export default {
   components: {
     Input,
     AlertComponent,
+    ButtonSubmit,
   },
 
   methods: {
@@ -60,11 +62,6 @@ export default {
     />
 
     <AlertComponent v-if="errorMessage" :message="errorMessage" />
-    <button
-      type="submit"
-      class="w-full rounded-full bg-arena px-4 py-3 text-texto border border-lino mt-4"
-    >
-      Ingresar
-    </button>
+    <ButtonSubmit>Iniciar sesión</ButtonSubmit>
   </form>
 </template>

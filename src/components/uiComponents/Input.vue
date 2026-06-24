@@ -1,3 +1,10 @@
+<!-- <Input
+        label="Email:"
+        name="email"
+        type="email"
+        placeholder="Email"
+        v-model="user.email"
+      /> -->
 <script>
 export default {
   name: "Input",
@@ -15,8 +22,10 @@ export default {
 </script>
 
 <template>
-  <div class="flex flex-col gap-2">
-    <label :for="name" class="text-sm font-semibold text-[#F6F2E8]"> </label>
+  <div class="flex flex-col mt-4 gap-1">
+    <label :for="name" class="text-sm text-texto px-3">
+      {{ label }}
+    </label>
     <input
       :id="name"
       :name="name"
@@ -24,7 +33,7 @@ export default {
       :placeholder="placeholder"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
-      class="w-full rounded-full border border-lino bg-gradient-to-r from-arena/20 to-piedra/20 px-8 py-3 text-texto placeholder:text-texto focus:outline-none"
+      class="w-full rounded-full border border-lino bg-gradient-to-r from-arena/70 to-piedra/50 px-8 py-3 text-texto placeholder:text-gray focus:outline-none"
     />
   </div>
 </template>

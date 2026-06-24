@@ -1,4 +1,7 @@
 <script>
+//servicios
+import { getExerciseById } from "../services/exercises.js";
+
 import MainBreath from "../components/breathing/MainBreath.vue";
 import SosMicrotext from "../components/breathing/SosMicrotext.vue";
 import Exit from "../components/uiComponents/Exit.vue";
@@ -11,6 +14,7 @@ export default {
   name: "BreathView",
   data() {
     return {
+      exerciseBreath: null,
       bgExerciseDay,
       showFeedbackModal: false,
 
@@ -93,8 +97,8 @@ export default {
       //TODO:
       //cambio contenido de la modal:
       // muestro mensaje de ánimo y ofrezco dos opciones:
-      //1. Hacer un ejercicio de grounding (redirijo a un ejercicio de grounding).
-      //2. Explorar catalogo de ejercicios (redirijo a la sección de ejercicios).
+      //1 Hacer un ejercicio de grounding (redirijo a un ejercicio de grounding)
+      //o 2 Explorar catlogo de ejercicios (redirijo a la sección de ejercicios)
       this.modalContent = {
         title: "Probemos con otra técnica",
         subtitle: "Grounding ayuda a volver la atención al presente",
@@ -104,6 +108,21 @@ export default {
         ],
       };
     },
+  },
+  async mounted() {
+    const id = this.$route.params.id;
+    if (!id) {
+      console.error("No hay id");
+      return;
+    }
+    const exercise = await getExerciseById(id);
+
+    this.exerciseBreath = {
+      name: exercise.name,
+      totalDuration: exercise.duration,
+      phases: exercise.phases,
+    };
+    console.log(exercise);
   },
 };
 </script>
@@ -115,6 +134,8 @@ export default {
     <HeaderExercise />
     <main class="flex-1 flex flex-col items-center">
       <MainBreath
+        v-if="exerciseBreath"
+        :exercise-breath="exerciseBreath"
         @exercise-finished="showFeedbackModal = true"
         class="flex-9"
       />
