@@ -2,6 +2,7 @@
 import { registerUser } from "../../services/auth";
 import Input from "../uiComponents/Input.vue";
 import AlertComponent from "../uiComponents/AlertComponent.vue";
+import ButtonSubmit from "../uiComponents/ButtonSubmit.vue";
 
 export default {
   name: "RegisterForm",
@@ -19,7 +20,7 @@ export default {
     };
   },
 
-  components: { Input, AlertComponent },
+  components: { Input, AlertComponent, ButtonSubmit },
   methods: {
     async submitFormRegister() {
       if (this.user.password !== this.user.confirmPassword) {
@@ -55,7 +56,7 @@ export default {
   <form action="#" @submit.prevent="submitFormRegister">
     <Input
       label="Ingresá tu Email:"
-      name="userName"
+      name="email"
       type="text"
       placeholder="Ingresá tu email"
       v-model="user.email"
@@ -71,7 +72,7 @@ export default {
 
     <Input
       label="Confirmá tu contraseña:"
-      name="password"
+      name="confirm-password"
       type="password"
       placeholder="Confirmá tu contraseña"
       v-model="user.confirmPassword"
@@ -82,11 +83,7 @@ export default {
       </li>
     </ul>
     <AlertComponent v-if="errorMessage" :message="errorMessage" />
-    <button
-      type="submit"
-      class="w-full rounded-full bg-arena px-4 py-3 text-texto border border-lino mt-4"
-    >
-      Registrarme
-    </button>
+
+    <ButtonSubmit> Registrarme </ButtonSubmit>
   </form>
 </template>

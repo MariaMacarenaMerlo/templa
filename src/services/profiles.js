@@ -2,6 +2,11 @@ import supabase from "./supabase";
 
 //export async function createProfile() {}
 
+/**
+ *
+ * @param {string} id
+ * @param {*} data
+ */
 export async function updateUserProfile(id, data) {
   const { error } = await supabase.from("profiles").update(data).eq("id", id);
   if (error) {

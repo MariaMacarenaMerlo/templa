@@ -1,6 +1,9 @@
 <script>
 //servicios
 import { getExerciseById } from "../services/exercises.js";
+import { saveExerciseSession } from "../services/exerciseSessions";
+import { getCurrentUser } from "../services/auth.js";
+import { saveSosSession } from "../services/sosSessions.js";
 
 import MainBreath from "../components/breathing/MainBreath.vue";
 import SosMicrotext from "../components/breathing/SosMicrotext.vue";
@@ -38,7 +41,16 @@ export default {
   },
 
   methods: {
-    handleFeedback(value) {
+    async handleFeedback(value) {
+      console.log("Respuesta del usuario:", value);
+      if (value === "si" || value === "poco" || value === "no") {
+        const user = await getCurrentUser();
+
+        await saveSosSession({
+          userId: user.id,
+          feedback: value,
+        });
+      }
       switch (value) {
         case "si":
           this.finishExercise();
@@ -57,7 +69,7 @@ export default {
           break;
 
         case "explore":
-          this.$router.push("/exercises");
+          this.$router.push("/descubre");
           break;
 
         case "grounding":
@@ -75,7 +87,7 @@ export default {
       // redirijo a la home o a otra sección.
       this.modalContent = {
         title: "Lo hiciste muy bien",
-        subtitle: "Tomarte este momento ya fuê un paso importante.",
+        subtitle: "Tomarte este momento ya fué un paso importante.",
         buttons: [{ label: "Volver al inicio", value: "home" }],
       };
     },
@@ -108,6 +120,29 @@ export default {
         ],
       };
     },
+
+    async handleExerciseFinished() {
+      // TODO: hacer que segun desde donde vengan las ejercicios redirija a /descubre /home /respiraciones /grounding, o hacer que vuelva a la pantalla anterior. Por ahora lo redirijo a /home
+      if (this.$route.query.source === "pause") {
+        this.showFeedbackModal = true;
+      } else {
+        this.$router.push("/");
+      }
+
+      try {
+        const user = await getCurrentUser();
+
+        const sessionData = {
+          userId: user.id,
+          exerciseId: this.exerciseBreath.id,
+          // feedback: null TODO: se actualizará después de recibir la retroalimentación del usuario pero aun falta crear el campo en la tabla sessions_exercises
+        };
+
+        await saveExerciseSession(sessionData);
+      } catch (error) {
+        console.error("Error al guardar la sesión de ejercicio", error);
+      }
+    },
   },
   async mounted() {
     const id = this.$route.params.id;
@@ -118,6 +153,7 @@ export default {
     const exercise = await getExerciseById(id);
 
     this.exerciseBreath = {
+      id: exercise.id,
       name: exercise.name,
       totalDuration: exercise.duration,
       phases: exercise.phases,
@@ -136,7 +172,7 @@ export default {
       <MainBreath
         v-if="exerciseBreath"
         :exercise-breath="exerciseBreath"
-        @exercise-finished="showFeedbackModal = true"
+        @exercise-finished="handleExerciseFinished"
         class="flex-9"
       />
       <div class="flex-1 flex flex-col items-center justify-center">

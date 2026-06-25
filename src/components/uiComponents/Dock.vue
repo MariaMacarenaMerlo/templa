@@ -17,7 +17,7 @@ export default {
       navElements: [
         { name: "Inicio", icon: inicio, route: "/" },
         { name: "Descubre", icon: descubre, route: "/descubre" },
-        { name: "TemplaIA", icon: templaIA, route: "/templaIa" },
+        { name: "TemplaIA", icon: templaIA, route: "/templa-ia" },
         { name: "Perfil", icon: perfil, route: "/perfil" },
         { name: "Premium", icon: premium, route: "/premium" },
       ],

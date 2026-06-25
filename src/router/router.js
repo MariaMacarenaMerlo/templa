@@ -7,6 +7,10 @@ import Register from "../views/Register.vue";
 import BreathView from "../views/BreathView.vue";
 import Splash from "../views/Splash.vue";
 import Perfil from "../views/Profile.vue";
+import BreathCatalog from "../views/BreathCatalog.vue";
+import Discover from "../views/Discover.vue";
+import Premium from "../views/Premium.vue";
+import TemplaIa from "../views/TemplaIa.vue";
 const routes = [
   {
     path: "/",
@@ -37,7 +41,27 @@ const routes = [
     path: "/perfil",
     name: "Perfil",
     component: Perfil,
-    meta: { isProtected: true },
+    // meta: { isProtected: true },
+  },
+  {
+    path: "/respiraciones",
+    name: "BreathCatalog",
+    component: BreathCatalog,
+  },
+  {
+    path: "/descubre",
+    name: "Discover",
+    component: Discover,
+  },
+  {
+    path: "/premium",
+    name: "Premium",
+    component: Premium,
+  },
+  {
+    path: "/templa-ia",
+    name: "TemplaIa",
+    component: TemplaIa,
   },
 ];
 
@@ -53,9 +77,9 @@ subscribeToUserStateChanges((userData) => {
   user = userData;
 });
 
-router.beforeEach((to, from) => {
-  console.log("user:", user);
-  if (to.meta.isProtected && !user) return "/login";
-});
+// router.beforeEach((to, from) => {
+//   console.log("user:", user);
+//   if (to.meta.isProtected && !user) return "/login";
+// });
 
 export default router;

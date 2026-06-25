@@ -4,10 +4,7 @@ export default {
 
   methods: {
     goToPause() {
-      this.$router.push({
-        name: "BreathView",
-        params: { id: 2 },
-      });
+      this.$router.push("/breath/2?source=pause"); //le pasamos el query para que sepa que el ejericio viene desde el boton de pausa
     },
   },
 };

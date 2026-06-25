@@ -15,6 +15,9 @@ import RandomQuote from "../components/home/RandomQuote.vue";
 import Dock from "../components/uiComponents/Dock.vue";
 import ActionCard from "../components/home/ActionCard.vue";
 
+//servicios
+import { subscribeToUserStateChanges } from "../services/auth.js";
+
 export default {
   name: "Home",
   data() {
@@ -24,12 +27,14 @@ export default {
       HablarIcon,
       ReflexionarIcon,
 
+      user: null,
+
       cards: [
         {
           icon: RespirarIcon,
           title: "Respirar",
           text: "Ejercicios para calmar tu mente",
-          route: "/ejercicios-respiracion",
+          route: "/respiraciones",
         },
         {
           icon: HablarIcon,
@@ -69,6 +74,10 @@ export default {
     this.audio = new Audio(homeAudio); //audio es una API nativa de JS, tiene propiedades y metodos
     this.audio.loop = true;
     this.audio.play();
+
+    subscribeToUserStateChanges((user) => {
+      this.user = user;
+    });
   },
 
   unmounted() {
@@ -77,24 +86,17 @@ export default {
 };
 </script>
 
-<!--
-HomeView 
-** Homheader
-** SosButton
-** MicroTextCard
-** ActionCard x3
-** Dock
--->
 <template>
   <main>
+    <!-- TODO: definirlo en una clase para cambiar la imagen segun el breakpoint -->
     <section
-      class="pt-13 px-3.75 pb- bg-cover bg-center bg-no-repeat flex flex-col gap-y-10 min-h-[675px]"
+      class="pt-13 px-3.75 bg-cover bg-center bg-no-repeat flex flex-col gap-y-10 min-h-[675px] lg:px-[20%]"
       :style="{
         backgroundImage: `url(${bgHome})`,
         backgroundPosition: 'center bottom',
       }"
     >
-      <HomeHeader @soundOn="playPauseAudio" />
+      <HomeHeader @soundOn="playPauseAudio" :user="user" />
       <div class="flex flex-col items-center gap-[28px]">
         <SosButton />
         <div>
@@ -106,7 +108,7 @@ HomeView
     </section>
 
     <section
-      class="bg-linear-to-b from-[#EFDAC9] to-[#F3F0EC] px-[17px] pb-[6rem]"
+      class="bg-linear-to-b from-[#EFDAC9] to-[#F3F0EC] px-[17px] pb-[6rem] lg:px-[20%]"
     >
       <h2 class="font-normal text-[17px] pt-2">
         ¿Qué te gustaría hacer ahora?

@@ -1,7 +1,7 @@
 <script>
 //TODO: Agregar barra de navegacion superior
 //imagenes
-import bgLoginRegister from "../assets/bg/bg_register_login.jpg";
+import bgLight from "../assets/bg/bg_register_light.webp";
 import logo from "../assets/logos/logo_vertical_blanco.jpg";
 
 import LoginForm from "../components/login/LoginForm.vue";
@@ -15,7 +15,7 @@ export default {
 
   data() {
     return {
-      bgLoginRegister,
+      bgLight,
       logo,
       title: "Iniciar sesión",
     };
@@ -31,8 +31,8 @@ export default {
 
 <template>
   <section
-    class="min-h-screen bg-cover bg-center bg-no-repeat"
-    :style="{ backgroundImage: `url(${bgLoginRegister})` }"
+    class="min-h-screen bg-cover bg-center bg-no-repeat flex flex-col items-center"
+    :style="{ backgroundImage: `url(${bgLight})` }"
   >
     <div class="w-full max-w-md px-8 pt-24">
       <header class="mb-6">
@@ -49,8 +49,13 @@ export default {
 
       <LoginForm />
     </div>
-    <article>
-      <button @click="goToRegister">registrarme</button>
+    <article class="w-full max-w-md px-8 pt-4 text-center">
+      <button
+        @click="goToRegister"
+        class="text-center text-texto text-sm underline"
+      >
+        Registrarme
+      </button>
     </article>
   </section>
 </template>
