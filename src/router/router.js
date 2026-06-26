@@ -41,7 +41,7 @@ const routes = [
     path: "/perfil",
     name: "Perfil",
     component: Perfil,
-    // meta: { isProtected: true },
+    meta: { isProtected: true },
   },
   {
     path: "/respiraciones",
@@ -77,9 +77,9 @@ subscribeToUserStateChanges((userData) => {
   user = userData;
 });
 
-// router.beforeEach((to, from) => {
-//   console.log("user:", user);
-//   if (to.meta.isProtected && !user) return "/login";
-// });
+router.beforeEach((to, from) => {
+  console.log("user:", user);
+  if (to.meta.isProtected && !user) return "/login";
+});
 
 export default router;

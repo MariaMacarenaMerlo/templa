@@ -97,7 +97,7 @@ export default {
 </script>
 <template>
   <section
-    class="flex flex-col bg-cover bg-bottom px-[10px] py-10 lg:px-[20%]"
+    class="flex flex-col bg-cover bg-bottom px-[10px] py-10 lg:px-[20%] min-h-screen"
     :style="{ backgroundImage: `url(${bgLight})` }"
   >
     <header class="flex flex-col pb-[10px]">
@@ -133,7 +133,7 @@ export default {
         </div>
       </CardProfile>
       <CardProfile :icon="cuenta" h2="Cuenta" p="Gestiona tu cuenta">
-        <ul>
+        <ul class="md:px-[10%]">
           <LiAction
             :icon="pencil"
             title="Editar perfil"
@@ -166,7 +166,7 @@ export default {
         h2="Botón de pausa Templa"
         p="Tu refugio para volver al presente"
       >
-        <div v-if="stats.sos" class="flex flex-col items-center">
+        <div v-if="stats.sos" class="flex flex-col items-center md:px-[10%]">
           <div class="flex flex-col items-center">
             <h3 class="text-2xl font-bold">
               {{ stats.sos.porcentajeSiAyudo }}%

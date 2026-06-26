@@ -1,0 +1,8 @@
+Carrera: Tecnicatura Superior en Diseño y Programación Web
+Materia: Clientes Web Mobile
+Cuatrimestre: Segundo cuatrimestre
+Año: 2026
+Turno: mañana
+Apellido y nombre: Merlo, María Macarena
+Docente: Santiago Gallino
+Carácter de entrega: 2do parcial
